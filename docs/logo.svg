@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="Codendium">
+  <title>Codendium</title>
+  <!--
+    Bracket monogram: a copyright mark held inside code brackets.
+
+    Deliberately monochrome in a single mid-blue. A two-tone mark with a
+    dark glyph would vanish on GitHub's dark theme, and a light one would
+    wash out on the light theme; this hue clears both, and at 16px the
+    bracket-and-circle silhouette still reads.
+
+    The (c) is drawn as a stroked circle plus an arc - never a <text>
+    glyph, which would depend on fonts the viewer may not have.
+  -->
+  <g fill="none" stroke="#2F6FEB" stroke-linecap="square" stroke-linejoin="miter">
+    <!-- left bracket -->
+    <path d="M 78 46 L 44 46 L 44 210 L 78 210" stroke-width="22"/>
+    <!-- right bracket -->
+    <path d="M 178 46 L 212 46 L 212 210 L 178 210" stroke-width="22"/>
+    <!-- copyright ring -->
+    <circle cx="128" cy="128" r="46" stroke-width="15"/>
+    <!-- the C inside, opening to the right -->
+    <path d="M 142.9 112.7 A 20 20 0 1 0 142.9 143.3" stroke-width="12" stroke-linecap="round"/>
+  </g>
+</svg>

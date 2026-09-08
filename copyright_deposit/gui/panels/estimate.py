@@ -48,7 +48,7 @@ class EstimatePanel(QWidget):
         self.rule_line = QLabel("Run an estimate to see the page count.")
         self.rule_line.setWordWrap(True)
         self.grid_line = QLabel("")
-        self.grid_line.setStyleSheet("color: palette(mid);")
+        self.grid_line.setStyleSheet("color: palette(placeholderText);")
 
         summary = QGroupBox("Result")
         summary_layout = QVBoxLayout(summary)
@@ -80,7 +80,7 @@ class EstimatePanel(QWidget):
             "which is simpler than the first-25/last-25 split."
         )
         hint.setWordWrap(True)
-        hint.setStyleSheet("color: palette(mid);")
+        hint.setStyleSheet("color: palette(placeholderText);")
         what_if_layout.addWidget(hint)
 
         self.what_if_table = QTableWidget(0, 3)

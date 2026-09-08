@@ -111,7 +111,7 @@ class OptionsPanel(QWidget):
             "parse tree, that file is kept verbatim and a warning is raised."
         )
         note.setWordWrap(True)
-        note.setStyleSheet("color: palette(mid);")
+        note.setStyleSheet("color: palette(placeholderText);")
         form.addWidget(note)
         return box
 
@@ -174,7 +174,7 @@ class OptionsPanel(QWidget):
             "less is not permitted."
         )
         guidance.setWordWrap(True)
-        guidance.setStyleSheet("color: palette(mid);")
+        guidance.setStyleSheet("color: palette(placeholderText);")
         form.addRow(guidance)
         return box
 
@@ -256,7 +256,7 @@ class OptionsPanel(QWidget):
             "deposited text."
         )
         note.setWordWrap(True)
-        note.setStyleSheet("color: palette(mid);")
+        note.setStyleSheet("color: palette(placeholderText);")
         form.addRow(note)
         return box
 
@@ -278,7 +278,7 @@ class OptionsPanel(QWidget):
             "read by anyone who inspects the filing."
         )
         note.setWordWrap(True)
-        note.setStyleSheet("color: palette(mid);")
+        note.setStyleSheet("color: palette(placeholderText);")
         layout.addWidget(note)
         return box
 

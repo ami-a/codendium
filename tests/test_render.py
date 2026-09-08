@@ -309,7 +309,7 @@ def test_summary_contains_the_filing_statement(make_tree, settings_for):
     settings = settings_for(make_tree(SMALL_TREE))
     result = Pipeline().build(settings)
     summary = open(result.summary_path, encoding="utf-8").read()
-    assert "COPYRIGHT DEPOSIT BUILD SUMMARY" in summary
+    assert "CODENDIUM - DEPOSIT BUILD SUMMARY" in summary
     assert "Statement for the application" in summary
     assert "FILE ORDER" in summary
 

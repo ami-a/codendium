@@ -1,13 +1,45 @@
 [build-system]
-requires = ["setuptools>=68"]
+# The SPDX string form of `license` below needs setuptools >= 77.
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "copyright-deposit-builder"
 version = "1.0.0"
-description = "Builds US Copyright Office compliant source-code deposit PDFs from a source tree."
+description = "Codendium - builds US Copyright Office compliant source-code deposit PDFs from a source tree."
 readme = "README.md"
 requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "ami-a" }]
+keywords = [
+    "copyright",
+    "registration",
+    "deposit",
+    "source-code",
+    "pdf",
+    "compendium",
+    "intellectual-property",
+    "legal",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Environment :: X11 Applications :: Qt",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Legal Industry",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Legal Industry",
+    "Topic :: Printing",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Text Processing :: Markup",
+]
 dependencies = [
     "reportlab>=4.0",
     "pygments>=2.15",
@@ -19,6 +51,11 @@ dependencies = [
 gui = ["PySide6>=6.6"]
 dev = ["pypdf>=4.0", "pytest>=7.4"]
 
+[project.urls]
+Homepage = "https://github.com/ami-a/Codendium"
+Repository = "https://github.com/ami-a/Codendium"
+Issues = "https://github.com/ami-a/Codendium/issues"
+
 [project.scripts]
 copyright-deposit = "copyright_deposit.cli:main"
 
@@ -26,7 +63,7 @@ copyright-deposit = "copyright_deposit.cli:main"
 include = ["copyright_deposit*"]
 
 [tool.setuptools.package-data]
-"copyright_deposit.assets" = ["fonts/*.ttf"]
+"copyright_deposit.assets" = ["fonts/*.ttf", "fonts/*.md"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

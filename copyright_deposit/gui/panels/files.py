@@ -39,9 +39,15 @@ COL_RANGES = 4
 COL_ORIGIN = 5
 COL_PAGES = 6
 
-UNLISTED_TINT = QColor(255, 193, 7, 45)
-OMITTED_TINT = QColor(128, 128, 128, 40)
-PARTIAL_TINT = QColor(64, 140, 255, 45)
+# Row tints are alpha-blended over whatever the theme's base colour is, so
+# they must stay faint: on a dark theme an alpha in the 40s stops reading as
+# a highlight and turns the row into a solid block of colour.
+UNLISTED_TINT = QColor(255, 193, 7, 26)
+OMITTED_TINT = QColor(128, 128, 128, 34)
+PARTIAL_TINT = QColor(64, 140, 255, 30)
+
+# Readable on both light and dark themes, unlike a blended background.
+AMBER_TEXT = QColor(198, 132, 0)
 
 RANGE_HINT = (
     "Blank = the whole file. Otherwise list the lines to deposit, using the "
@@ -229,6 +235,12 @@ class FilesPanel(QWidget):
 
                 if origin == SOURCE_UNLISTED and path not in excluded:
                     self._tint_row(row, UNLISTED_TINT)
+                    # The row tint alone cannot be relied on: it is blended
+                    # over a theme colour we do not control. Colouring the
+                    # Origin text carries the flag on light and dark alike.
+                    origin_item = self.table.item(row, COL_ORIGIN)
+                    if origin_item is not None:
+                        origin_item.setForeground(QBrush(AMBER_TEXT))
                     path_item.setToolTip(
                         "Not named in the order list; appended automatically."
                     )

@@ -31,7 +31,7 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from .. import __version__
+from .. import DISPLAY_NAME, __version__
 from ..config import BuildSettings
 from ..core.pipeline import Pipeline
 from .history import HistoryStore, RunRecord
@@ -90,7 +90,7 @@ class HistoryDialog(QDialog):
 class MainWindow(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
-        self.setWindowTitle(f"Copyright Deposit Builder {__version__}")
+        self.setWindowTitle(f"{DISPLAY_NAME} {__version__}")
         self.resize(1120, 820)
 
         self.pipeline = Pipeline()
@@ -589,8 +589,8 @@ class MainWindow(QMainWindow):
     def show_about(self) -> None:
         QMessageBox.about(
             self,
-            "Copyright Deposit Builder",
-            f"<b>Copyright Deposit Builder {__version__}</b>"
+            f"About {DISPLAY_NAME}",
+            f"<b>{DISPLAY_NAME} {__version__}</b>"
             "<p>Builds source-code deposit PDFs for US copyright registration.</p>"
             "<ul>"
             "<li>Monospaced type at 9.5 pt, about 40 lines per page, continuous "

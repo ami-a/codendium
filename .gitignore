@@ -1,11 +1,29 @@
-__pycache__/
-*.py[cod]
+# Virtual environments
+envs/
+.env*/
 .venv/
 venv/
-envs/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
 build/
 dist/
-*.egg-info/
 .pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Editors / OS
+.idea/
+.vs/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Tool output
 out/
+out2/
+out3/
 deposit_out/

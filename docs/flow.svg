@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" width="960" height="400" role="img" aria-label="Codendium pipeline: discover, order, strip, layout, then either estimate or render">
+  <title>How Codendium builds a deposit</title>
+  <desc>The source folder is discovered, ordered and stripped, then laid out on a fixed page grid. Both the estimate and the renderer read that same layout, which is why the estimated page count equals the rendered one.</desc>
+  <!--
+    The diagram carries its own light panel so that dark body text stays
+    readable whatever background the host uses - GitHub light, GitHub dark
+    or PyPI - without needing two files and a <picture> element.
+  -->
+  <style>
+    .box   { fill: #FFFFFF; stroke: #CBD5E1; stroke-width: 1.5; }
+    .hinge { fill: #EFF6FF; stroke: #2F6FEB; stroke-width: 2.5; }
+    .aside { fill: #FFFBEB; stroke: #E5C07B; stroke-width: 1.5; }
+    .out   { fill: #F1F5F9; stroke: #CBD5E1; stroke-width: 1.5; }
+    .t     { font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #1E293B; font-size: 15px; }
+    .tb    { font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #1D4ED8; font-size: 16px; font-weight: 700; letter-spacing: .04em; }
+    .sm    { font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #64748B; font-size: 12.5px; }
+    .cap   { font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #475569; font-size: 13.5px; }
+    .arrow { fill: none; stroke: #94A3B8; stroke-width: 2; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#94A3B8"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="960" height="400" rx="14" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2"/>
+
+  <!-- main chain -->
+  <rect class="box" x="24"  y="86" width="132" height="54" rx="9"/>
+  <text class="t" x="90"  y="110" text-anchor="middle">Source</text>
+  <text class="t" x="90"  y="129" text-anchor="middle">folder</text>
+
+  <rect class="box" x="186" y="86" width="108" height="54" rx="9"/>
+  <text class="t" x="240" y="110" text-anchor="middle">Discover</text>
+  <text class="sm" x="240" y="128" text-anchor="middle">recursive walk</text>
+
+  <rect class="box" x="324" y="86" width="100" height="54" rx="9"/>
+  <text class="t" x="374" y="110" text-anchor="middle">Order</text>
+  <text class="sm" x="374" y="128" text-anchor="middle">list or graph</text>
+
+  <rect class="box" x="454" y="86" width="112" height="54" rx="9"/>
+  <text class="t" x="510" y="110" text-anchor="middle">Strip</text>
+  <text class="sm" x="510" y="128" text-anchor="middle">+ line ranges</text>
+
+  <!-- the hinge -->
+  <rect class="hinge" x="596" y="79" width="142" height="68" rx="11"/>
+  <text class="tb" x="667" y="106" text-anchor="middle">LAYOUT</text>
+  <text class="sm" x="667" y="126" text-anchor="middle">fixed page grid</text>
+  <text class="sm" x="667" y="141" text-anchor="middle">40 lines / page</text>
+
+  <path class="arrow" marker-end="url(#a)" d="M 156 113 L 182 113"/>
+  <path class="arrow" marker-end="url(#a)" d="M 294 113 L 320 113"/>
+  <path class="arrow" marker-end="url(#a)" d="M 424 113 L 450 113"/>
+  <path class="arrow" marker-end="url(#a)" d="M 566 113 L 592 113"/>
+
+  <!-- pre-flight aside -->
+  <rect class="aside" x="324" y="196" width="242" height="46" rx="9"/>
+  <text class="t" x="445" y="216" text-anchor="middle">Pre-flight scan + redaction</text>
+  <text class="sm" x="445" y="233" text-anchor="middle">secrets, third-party code, §721.7</text>
+  <path class="arrow" marker-end="url(#a)" d="M 566 219 L 640 219 L 640 151" stroke-dasharray="5 4"/>
+
+  <!-- the two paths out of layout -->
+  <path class="arrow" marker-end="url(#a)" d="M 738 100 L 762 100 L 762 66 L 786 66"/>
+  <path class="arrow" marker-end="url(#a)" d="M 738 126 L 762 126 L 762 176 L 786 176"/>
+
+  <rect class="box" x="790" y="42" width="146" height="48" rx="9"/>
+  <text class="t" x="863" y="63" text-anchor="middle">Estimate</text>
+  <text class="sm" x="863" y="80" text-anchor="middle">instant, no PDF</text>
+
+  <rect class="box" x="790" y="152" width="146" height="48" rx="9"/>
+  <text class="t" x="863" y="173" text-anchor="middle">Render</text>
+  <text class="sm" x="863" y="190" text-anchor="middle">reportlab</text>
+
+  <!-- outputs -->
+  <path class="arrow" marker-end="url(#a)" d="M 863 200 L 863 232"/>
+  <rect class="out" x="612" y="236" width="324" height="104" rx="10"/>
+  <text class="sm" x="632" y="259">Outputs</text>
+  <text class="t"  x="632" y="283">full PDF — the complete program</text>
+  <text class="t"  x="632" y="305">deposit PDF — §721.6 applied</text>
+  <text class="t"  x="632" y="327">manifest + summary — audit trail</text>
+
+  <!-- the point of the whole design -->
+  <path class="arrow" d="M 40 268 L 40 350" stroke="#2F6FEB" stroke-width="2.5"/>
+  <text class="cap" x="58" y="284">Both paths leave the <tspan fill="#1D4ED8" font-weight="700">same LAYOUT</tspan>.</text>
+  <text class="cap" x="58" y="306">Estimating runs every stage the renderer runs and</text>
+  <text class="cap" x="58" y="326">stops just before writing the file — so the page count</text>
+  <text class="cap" x="58" y="346">you see is the page count you get, not a projection.</text>
+</svg>

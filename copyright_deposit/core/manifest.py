@@ -15,7 +15,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-from .. import __version__
+from .. import DISPLAY_NAME, __version__
 from .deposit import MODE_ENTIRE
 from .pipeline import EstimateResult
 
@@ -57,7 +57,7 @@ def build_manifest(estimate: EstimateResult, outputs: list[str]) -> dict:
         )
 
     return {
-        "tool": {"name": "Copyright Deposit Builder", "version": __version__},
+        "tool": {"name": DISPLAY_NAME, "version": __version__},
         "generated_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "settings_fingerprint": settings.fingerprint(),
         "source_root": estimate.discovery.root,
@@ -135,7 +135,7 @@ def format_summary(manifest: dict) -> str:
     lines: list[str] = []
     add = lines.append
 
-    add("COPYRIGHT DEPOSIT BUILD SUMMARY")
+    add(f"{manifest['tool']['name'].upper()} - DEPOSIT BUILD SUMMARY")
     add("=" * 72)
     add(f"Generated : {manifest['generated_utc']}")
     add(f"Tool      : {manifest['tool']['name']} {manifest['tool']['version']}")

@@ -69,7 +69,7 @@ class PreflightPanel(QWidget):
             "before filing."
         )
         note.setWordWrap(True)
-        note.setStyleSheet("color: palette(mid);")
+        note.setStyleSheet("color: palette(placeholderText);")
         layout.addWidget(note)
 
         self.secrets_table = QTableWidget(0, 5)
@@ -109,7 +109,7 @@ class PreflightPanel(QWidget):
             "you did not write, or disclaim it in the application."
         )
         note.setWordWrap(True)
-        note.setStyleSheet("color: palette(mid);")
+        note.setStyleSheet("color: palette(placeholderText);")
         layout.addWidget(note)
 
         self.third_party_table = QTableWidget(0, 4)

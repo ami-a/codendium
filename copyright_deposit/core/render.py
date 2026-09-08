@@ -15,7 +15,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
-from .. import __version__
+from .. import DISPLAY_NAME, __version__
 from ..config import HeaderInfo, LayoutOptions
 from .deposit import MODE_HEAD_TAIL, DepositSelection
 from .layout import (
@@ -55,7 +55,7 @@ def _canvas(path: str, geometry: PageGeometry, header: HeaderInfo, fingerprint: 
     c.setTitle(header.title_line())
     c.setAuthor(header.copyright_owner or "")
     c.setSubject(header.deposit_label or "Source code deposit")
-    c.setCreator(f"Copyright Deposit Builder {__version__}")
+    c.setCreator(f"{DISPLAY_NAME} {__version__}")
     c.setKeywords(f"settings-fingerprint:{fingerprint[:16]}")
     return c
 
