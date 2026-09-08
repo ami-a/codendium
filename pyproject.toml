@@ -63,7 +63,7 @@ copyright-deposit = "copyright_deposit.cli:main"
 include = ["copyright_deposit*"]
 
 [tool.setuptools.package-data]
-"copyright_deposit.assets" = ["fonts/*.ttf", "fonts/*.md"]
+"copyright_deposit.assets" = ["*.svg", "fonts/*.ttf", "fonts/*.md"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/ami-a/Codendium/main/docs/logo.svg" alt="Codendium" width="104">
+<img src="https://raw.githubusercontent.com/ami-a/Codendium/main/copyright_deposit/assets/logo.svg" alt="Codendium" width="104">
 
 # Codendium
 

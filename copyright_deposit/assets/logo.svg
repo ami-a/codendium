@@ -16,9 +16,11 @@
     <path d="M 78 46 L 44 46 L 44 210 L 78 210" stroke-width="22"/>
     <!-- right bracket -->
     <path d="M 178 46 L 212 46 L 212 210 L 178 210" stroke-width="22"/>
-    <!-- copyright ring -->
-    <circle cx="128" cy="128" r="46" stroke-width="15"/>
+    <!-- Copyright ring. Sized to leave clear air between it and the
+         brackets: at 16px the C inside is never going to be legible, so
+         what has to survive is three distinct shapes rather than a blob. -->
+    <circle cx="128" cy="128" r="41" stroke-width="14"/>
     <!-- the C inside, opening to the right -->
-    <path d="M 142.9 112.7 A 20 20 0 1 0 142.9 143.3" stroke-width="12" stroke-linecap="round"/>
+    <path d="M 139.3 114.6 A 17.5 17.5 0 1 0 139.3 141.4" stroke-width="11" stroke-linecap="round"/>
   </g>
 </svg>

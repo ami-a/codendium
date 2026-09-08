@@ -34,6 +34,7 @@ from PySide6.QtWidgets import (
 from .. import DISPLAY_NAME, __version__
 from ..config import BuildSettings
 from ..core.pipeline import Pipeline
+from .branding import app_icon
 from .history import HistoryStore, RunRecord
 from .panels.estimate import EstimatePanel
 from .panels.files import FilesPanel
@@ -91,6 +92,10 @@ class MainWindow(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
         self.setWindowTitle(f"{DISPLAY_NAME} {__version__}")
+        # Set here as well as on the QApplication, so the icon is correct
+        # when MainWindow is constructed directly (tests, screenshots,
+        # embedding) rather than through gui.app.run().
+        self.setWindowIcon(app_icon())
         self.resize(1120, 820)
 
         self.pipeline = Pipeline()
