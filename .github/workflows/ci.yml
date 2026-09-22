@@ -132,6 +132,24 @@ jobs:
       # --strict is what catches a README that renders broken on PyPI.
       - run: python -m twine check --strict dist/*
 
+      # twine check validates that the README renders; it does NOT validate
+      # classifiers. PyPI rejects an unknown one with a 400 at upload time,
+      # which is the worst possible moment to find out.
+      - name: Validate classifiers against the trove list
+        run: |
+          pip install trove-classifiers
+          python - <<'PY'
+          import tomllib
+          from trove_classifiers import classifiers
+
+          declared = tomllib.load(open("pyproject.toml", "rb"))["project"]["classifiers"]
+          bad = [c for c in declared if c not in set(classifiers)]
+          if bad:
+              raise SystemExit(f"invalid or deprecated classifiers: {bad}")
+          print(f"all {len(declared)} classifiers valid")
+          PY
+
+
       - name: Assert the package data actually landed in the wheel
         run: |
           python - <<'PY'

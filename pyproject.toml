@@ -35,7 +35,6 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
-    "Topic :: Legal Industry",
     "Topic :: Printing",
     "Topic :: Software Development :: Documentation",
     "Topic :: Text Processing :: Markup",
@@ -65,7 +64,7 @@ gui = ["PySide6>=6.8.1"]
 # extraction behaviour is a real dependency: 4.0 is what they were written to.
 test = ["pytest>=7.4", "pypdf>=4.0"]
 lint = ["ruff>=0.5"]
-build = ["build>=1.2", "twine>=6.1"]
+build = ["build>=1.2", "twine>=6.1", "trove-classifiers>=2024.1.1"]
 dev = ["codendium[gui,test,lint,build]"]
 
 [project.urls]
