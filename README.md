@@ -1,18 +1,22 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/ami-a/Codendium/main/copyright_deposit/assets/logo.svg" alt="Codendium" width="104">
+<img src="https://raw.githubusercontent.com/ami-a/codendium/main/copyright_deposit/assets/logo.svg" alt="Codendium" width="104">
 
 # Codendium
 
 **Turn a source tree into a US Copyright Office compliant deposit PDF — and know the page count before you render it.**
 
-[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
-[![Licence](https://img.shields.io/badge/Licence-Apache_2.0-D22128?style=flat-square&logo=apache&logoColor=white)](LICENSE)
+[![CI](https://github.com/ami-a/codendium/actions/workflows/ci.yml/badge.svg)](https://github.com/ami-a/codendium/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/codendium?label=PyPI)](https://pypi.org/project/codendium/)
+[![Python](https://img.shields.io/pypi/pyversions/codendium?label=Python)](https://pypi.org/project/codendium/)
+[![Downloads](https://static.pepy.tech/badge/codendium)](https://pepy.tech/project/codendium)
+[![Visits](https://hits.sh/github.com/ami-a/codendium.svg?label=visits)](https://hits.sh/github.com/ami-a/codendium/)
+
+[![Licence](https://img.shields.io/badge/Licence-Apache_2.0-D22128?style=flat-square&logo=apache&logoColor=white)](https://github.com/ami-a/codendium/blob/main/LICENSE)
 [![GUI](https://img.shields.io/badge/GUI-PySide6-41CD52?style=flat-square&logo=qt&logoColor=white)](https://doc.qt.io/qtforpython/)
 [![PDF](https://img.shields.io/badge/PDF-ReportLab-005C9C?style=flat-square)](https://www.reportlab.com/)
 [![Highlighting](https://img.shields.io/badge/Lexing-Pygments-FFD43B?style=flat-square&logoColor=black)](https://pygments.org/)
-[![Tests](https://img.shields.io/badge/tests-175%20passing-2EA043?style=flat-square)](tests/)
-[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-64748B?style=flat-square)](#install)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-64748B?style=flat-square)](https://github.com/ami-a/codendium#install)
 
 </div>
 
@@ -49,7 +53,7 @@ preparing a software registration, and you would rather not assemble a
 ## How it works
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/ami-a/Codendium/main/docs/flow.svg" alt="Pipeline: discover, order, strip, then a shared layout stage feeding either the estimator or the renderer" width="100%">
+<img src="https://raw.githubusercontent.com/ami-a/codendium/main/docs/flow.svg" alt="Pipeline: discover, order, strip, then a shared layout stage feeding either the estimator or the renderer" width="100%">
 </div>
 
 The page grid is fixed and the font is monospaced, so **page count is a pure
@@ -64,16 +68,22 @@ PDF across seven different layout configurations.
 ## Install
 
 ```bash
-git clone https://github.com/ami-a/Codendium.git
-cd Codendium
-pip install -r requirements.txt
+pip install codendium            # CLI only
+pip install "codendium[gui]"     # CLI + desktop GUI
 ```
 
 Python 3.10 or newer. On Windows use the `py` launcher in place of `python`.
 
 The GUI needs PySide6; **the CLI does not**, so on a headless machine or in CI
-you can install just the four runtime dependencies from `pyproject.toml`.
-For the test suite, `pip install -r requirements-dev.txt`.
+`pip install codendium` pulls only the four runtime dependencies.
+
+From source instead:
+
+```bash
+git clone https://github.com/ami-a/codendium.git
+cd codendium
+pip install -e ".[dev]"          # everything, including the test suite
+```
 
 ---
 
@@ -115,7 +125,7 @@ selected files, which makes it safe to run unattended.
 ## The application
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/ami-a/Codendium/main/docs/screenshot-estimate.png" alt="The estimate tab: 205 pages, the §721.6 split, the statement for the application, and page counts under four comment policies" width="100%">
+<img src="https://raw.githubusercontent.com/ami-a/codendium/main/docs/screenshot-estimate.png" alt="The estimate tab: 205 pages, the §721.6 split, the statement for the application, and page counts under four comment policies" width="100%">
 </div>
 
 The estimate answers the question that actually matters — *what do I change to
@@ -129,7 +139,7 @@ Strip all + collapse blanks       205 pages   (first 25 + last 25)
 ```
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/ami-a/Codendium/main/docs/screenshot-files.png" alt="The files tab: drag-ordered file list with language, line counts, per-file line ranges and the pages each file occupies" width="100%">
+<img src="https://raw.githubusercontent.com/ami-a/codendium/main/docs/screenshot-files.png" alt="The files tab: drag-ordered file list with language, line counts, per-file line ranges and the pages each file occupies" width="100%">
 </div>
 
 The file list *is* the order list. Drag rows, or let **Suggest order** build one
@@ -216,7 +226,7 @@ Courier is a PDF base-14 face: guaranteed monospaced, rendered identically by
 every viewer, with no embedding or font-redistribution question — which is what
 you want in a document you are filing. To use something else, point `--font` at
 a monospaced `.ttf` or drop one in
-[`copyright_deposit/assets/fonts/`](copyright_deposit/assets/fonts/). A
+[`copyright_deposit/assets/fonts/`](https://github.com/ami-a/codendium/tree/main/copyright_deposit/assets/fonts/). A
 proportional font is rejected rather than silently breaking the grid, and
 glyphs the font cannot draw become `?` with a warning rather than vanishing.
 
@@ -229,10 +239,10 @@ Overlong lines wrap — never truncate — and the wrap is counted in the estima
 | Package | Version | Licence | Used for |
 |---|---|---|---|
 | [reportlab](https://www.reportlab.com/) | ≥ 4.0 | BSD | PDF generation |
-| [Pygments](https://pygments.org/) | ≥ 2.15 | BSD-2-Clause | Comment classification for ~30 languages |
-| [charset-normalizer](https://github.com/jawah/charset_normalizer) | ≥ 3.2 | MIT | Deterministic source decoding |
-| [pathspec](https://github.com/cpburnz/python-pathspec) | ≥ 0.11 | MPL-2.0 | `.gitignore` matching |
-| [PySide6](https://doc.qt.io/qtforpython/) | ≥ 6.6 | LGPL-3.0 | GUI (optional) |
+| [Pygments](https://pygments.org/) | ≥ 2.7 | BSD-2-Clause | Comment classification for ~30 languages |
+| [charset-normalizer](https://github.com/jawah/charset_normalizer) | ≥ 2.0 | MIT | Deterministic source decoding |
+| [pathspec](https://github.com/cpburnz/python-pathspec) | ≥ 0.9 | MPL-2.0 | `.gitignore` matching |
+| [PySide6](https://doc.qt.io/qtforpython/) | ≥ 6.8.1 | LGPL-3.0 | GUI (optional) |
 
 PySide6 is LGPL. That imposes nothing on you for source use or a normal
 `pip install`, but it is worth knowing the day anyone freezes this into a
@@ -243,6 +253,7 @@ distributed binary.
 ## Tests
 
 ```bash
+pip install -e ".[test]"
 python -m pytest
 ```
 
@@ -259,8 +270,6 @@ written.
 
 ## Limitations
 
-- The test-count badge is maintained by hand; there is no CI yet.
-- Python 3.10–3.13 are declared, but only 3.11 is exercised regularly.
 - Comment classification is verified for Python and validated for C-family and
   Pygments-supported languages; an unrecognised language is deposited verbatim
   rather than guessed at.
@@ -269,7 +278,7 @@ written.
 
 ## Licence
 
-[Apache License 2.0](LICENSE) — Copyright 2026 [ami-a](https://github.com/ami-a).
+[Apache License 2.0](https://github.com/ami-a/codendium/blob/main/LICENSE) — Copyright 2026 [ami-a](https://github.com/ami-a).
 
 **Codendium prepares a deposit. It is not legal advice.** Whether a particular
 deposit satisfies the Copyright Office for a particular work is a judgement for

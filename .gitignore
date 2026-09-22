@@ -16,6 +16,7 @@ dist/
 .ruff_cache/
 
 # Editors / OS
+.claude/
 .idea/
 .vs/
 .vscode/

@@ -1,3 +1,4 @@
--r requirements.txt
-pypdf>=4.0
-pytest>=7.4
+# See requirements.txt. Everything - GUI, tests, lint and build tooling - is
+# declared as extras in pyproject.toml.
+#   pip install -r requirements-dev.txt   ==   pip install -e ".[dev]"
+-e .[dev]

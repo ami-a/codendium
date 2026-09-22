@@ -1,0 +1,82 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build + verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # Build provably from the thing that was tagged, not from whatever
+          # the default ref resolves to.
+          ref: ${{ github.event.release.tag_name }}
+          persist-credentials: false
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - run: python -m pip install --upgrade pip
+      - run: pip install "build>=1.2" "twine>=6.1"
+      - run: python -m build
+      - run: python -m twine check --strict dist/*
+
+      # PyPI never lets a filename be reused, so publishing 1.0.0 from a v1.0.1
+      # tag is a permanent mistake. Make it a failed build instead.
+      - name: Version, tag and built filenames must all agree
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          python - <<'PY'
+          import os, pathlib, re, sys
+
+          tag = os.environ["RELEASE_TAG"].lstrip("v")
+          src = pathlib.Path("copyright_deposit/__init__.py").read_text(encoding="utf-8")
+          m = re.search(r'^__version__ = "([^"]+)"$', src, re.M)
+          if not m:
+              sys.exit("could not find the __version__ literal")
+          version = m.group(1)
+          if version != tag:
+              sys.exit(f"__version__ is {version!r} but the release tag is {tag!r}")
+
+          built = sorted(p.name for p in pathlib.Path("dist").iterdir())
+          expected = sorted([f"codendium-{version}.tar.gz",
+                             f"codendium-{version}-py3-none-any.whl"])
+          if built != expected:
+              sys.exit(f"expected {expected}, built {built}")
+          print(f"version {version} matches tag; built {built}")
+          PY
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist/
+          if-no-files-found: error
+
+  publish:
+    name: Publish to PyPI
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/codendium
+    permissions:
+      # Trusted Publishing: this OIDC token IS the credential. No API token is
+      # stored anywhere. Scoped to this job alone, which runs no project code -
+      # it only downloads the artifact the previous job verified and uploads it.
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist/
+      # No `user`/`password`: omitting credentials entirely is what selects the
+      # trusted-publishing path. PEP 740 attestations are on by default.
+      - uses: pypa/gh-action-pypi-publish@release/v1

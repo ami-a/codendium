@@ -7,7 +7,6 @@ testable without Qt and makes builds reproducible from a script or CI.
 from __future__ import annotations
 
 import argparse
-import json
 import sys
 from pathlib import Path
 
@@ -254,9 +253,22 @@ def cmd_save_settings(args: argparse.Namespace) -> int:
     return 0
 
 
+def _prog_name() -> str:
+    """Name this invocation by the command the user actually typed.
+
+    The same parser is reached through three entry points - ``codendium``,
+    ``copyright-deposit`` and ``python -m copyright_deposit`` - so a hardcoded
+    prog would print a command the reader did not run.
+    """
+    stem = Path(sys.argv[0]).stem
+    if stem in {"__main__", "-m", ""}:
+        return "python -m copyright_deposit"
+    return stem
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="copyright-deposit",
+        prog=_prog_name(),
         description="Build US Copyright Office compliant source-code deposit PDFs.",
     )
     parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")

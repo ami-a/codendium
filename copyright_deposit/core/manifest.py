@@ -16,7 +16,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from .. import DISPLAY_NAME, __version__
-from .deposit import MODE_ENTIRE
 from .pipeline import EstimateResult
 
 

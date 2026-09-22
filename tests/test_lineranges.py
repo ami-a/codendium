@@ -5,7 +5,6 @@ from __future__ import annotations
 import pytest
 from pypdf import PdfReader
 
-from copyright_deposit.core import lineranges
 from copyright_deposit.core.lineranges import (
     apply_selection,
     compute_gaps,

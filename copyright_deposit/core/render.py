@@ -19,12 +19,9 @@ from .. import DISPLAY_NAME, __version__
 from ..config import HeaderInfo, LayoutOptions
 from .deposit import MODE_HEAD_TAIL, DepositSelection
 from .layout import (
-    KIND_BANNER,
-    KIND_CODE,
     KIND_ELISION,
     KIND_HEADER,
     KIND_NOTICE,
-    KIND_RULE,
     LayoutResult,
     RenderLine,
 )

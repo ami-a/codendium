@@ -7,7 +7,6 @@ hold the grid to that.
 
 from __future__ import annotations
 
-import pytest
 
 from copyright_deposit.config import LayoutOptions
 from copyright_deposit.core import metrics
