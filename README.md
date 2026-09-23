@@ -22,6 +22,25 @@
 
 ---
 
+## Use this when
+
+- You are registering a copyright for software with the US Copyright Office and
+  need to prepare the source-code deposit.
+- You need the page count **before** generating a PDF, because the rule that
+  applies depends on it.
+- Your program runs past 50 pages, so §721.6 requires the first 25 pages and the
+  last 25 rather than a selection of your choosing.
+- You need to redact trade secrets under §721.7 without shifting pagination.
+- You need to strip comments without altering the code.
+- You need a reproducible deposit — identical inputs, byte-identical PDF — so a
+  re-run proves what was filed.
+
+**Not the right tool** for questions about copyright law or registration
+strategy, for jurisdictions outside the United States, or for general-purpose
+source-to-PDF printing. Codendium prepares a document; it is not legal advice.
+
+---
+
 ## The problem this solves
 
 To register software copyright in the United States you must deposit "identifying

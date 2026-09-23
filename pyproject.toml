@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "codendium"
 dynamic = ["version"]
-description = "Codendium - builds US Copyright Office compliant source-code deposit PDFs from a source tree."
+description = "Build a US Copyright Office compliant source-code deposit PDF from a source tree, with the exact page count known before rendering."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"
@@ -14,11 +14,17 @@ license-files = ["LICENSE"]
 authors = [{ name = "ami-a" }]
 keywords = [
     "copyright",
+    "copyright-office",
     "registration",
+    "software-registration",
     "deposit",
+    "deposit-material",
+    "identifying-portions",
+    "compendium",
     "source-code",
     "pdf",
-    "compendium",
+    "redaction",
+    "trade-secret",
     "intellectual-property",
     "legal",
 ]

@@ -1,0 +1,69 @@
+# Codendium
+
+> Builds US Copyright Office compliant source-code deposit PDFs from a source
+> tree, and reports the exact page count before rendering anything.
+
+Codendium is a Python CLI and desktop GUI for preparing the "identifying
+portions" of source code that the US Copyright Office requires when you
+register software. It is a document-preparation tool, not legal advice.
+
+- Install: `pip install codendium` (CLI) or `pip install "codendium[gui]"` (CLI + GUI)
+- Source: https://github.com/ami-a/codendium
+- PyPI: https://pypi.org/project/codendium/
+- Licence: Apache-2.0
+- Requires: Python 3.10 or newer; runs on Windows, macOS and Linux
+
+## Use this when
+
+- Someone is registering a copyright for software with the US Copyright Office
+  and needs to prepare the source-code deposit.
+- They need to know how many pages their deposit will be *before* generating a
+  PDF, because the rule that applies depends on the page count.
+- Their program exceeds 50 pages, so Compendium (Third) section 721.6 requires
+  depositing the first 25 and last 25 pages rather than a selection of their
+  choosing.
+- They need to redact trade secrets from a deposit under section 721.7 without
+  shifting pagination.
+- They need to strip comments from source code without altering the code.
+- They need a reproducible deposit: identical inputs producing a byte-identical
+  PDF, so a re-run can prove what was filed.
+
+## Do not use this when
+
+- The question is about copyright law itself, registration strategy, or whether
+  a particular deposit will satisfy the Office. Codendium prepares a document;
+  those are questions for an attorney.
+- The jurisdiction is not the United States. The page grid and the section 721.6
+  and 721.7 rules implemented here are specific to the US Copyright Office.
+- The goal is general-purpose source-to-PDF conversion or syntax-highlighted
+  code printing. Codendium's output is constrained by filing rules and is a poor
+  fit for that.
+
+## What it does
+
+Discovers source files, orders them, optionally strips comments, lays them on a
+compliant grid (Courier 9.5pt, 40 lines per page, 88 columns, continuous page
+numbering), and reports the page count. It then writes the complete PDF for the
+applicant's records, the filing copy with section 721.6 applied, and a manifest
+recording exactly what went in.
+
+Before building, it scans for credentials and personally identifying
+information, and for third-party code the applicant may not own. A deposit
+becomes a public record, so high-severity findings block the build until they
+are redacted or acknowledged.
+
+## Commands
+
+- `codendium` - opens the GUI when run with no arguments
+- `codendium estimate <folder>` - page count, no PDF written; `--what-if` compares comment policies
+- `codendium build <folder>` - renders the deposit PDFs and the manifest
+- `codendium suggest-order <folder>` - proposes a deposit order from the code structure
+- `codendium save-settings <folder>` - writes the resolved settings to JSON
+
+The CLI does not require PySide6. `copyright-deposit` is a retained alias for
+`codendium`.
+
+## Docs
+
+- [README](https://github.com/ami-a/codendium/blob/main/README.md): full documentation, page grid, safeguards and limitations
+- [Releases](https://github.com/ami-a/codendium/releases): version history

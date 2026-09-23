@@ -1,5 +1,6 @@
 include LICENSE
 include README.md
+include llms.txt
 include requirements.txt
 include requirements-dev.txt
 recursive-include copyright_deposit/assets *

@@ -4,7 +4,7 @@ Builds US Copyright Office compliant source-code deposit PDFs
 (Compendium sections 721.6 and 721.7) from an arbitrary source tree.
 """
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 #: Product name, shown to people: window title, PDF metadata, reports.
 DISPLAY_NAME = "Codendium"
